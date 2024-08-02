@@ -10,11 +10,11 @@ const Message = ({ message }) => {
 
   return (
     <div>
-      <div className={`chat ${chatClassName}`}>
+      <div className={`chat ${chatClassName} p-2`}>
         <div className={`chat-bubble ${bubbleBgColor} text-white`}>
           {message.message}
         </div>
-        <div className="mx-1 chat-footer opacity-50">
+        <div className="chat-footer opacity-50">
           {extractTime(message.createdAt)}
         </div>
       </div>
