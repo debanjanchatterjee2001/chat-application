@@ -4,9 +4,13 @@ import MessageInput from "./MessageInput";
 import Messages from "./Messages";
 import { TiMessages } from "react-icons/ti";
 import { useAuthContext } from "../../contexts/AuthContext";
+import { useSocketContext } from "../../contexts/SocketContext";
 
 const MessageContainer = () => {
   const { selectedConversation, setSelectedConversation } = useConversation();
+  const { onlineUsers } = useSocketContext();
+
+  const isOnline = onlineUsers.includes(selectedConversation?._id);
 
   useEffect(() => {
     return () => setSelectedConversation(null);
@@ -20,7 +24,7 @@ const MessageContainer = () => {
         <>
           {/* Header */}
           <div className="flex items-center gap-2 bg-slate-500 px-4 py-2 mb-2">
-            <div className="avatar online">
+            <div className={`avatar ${isOnline ? "online" : ""}`}>
               <div className="w-12 rounded-full">
                 <img src={selectedConversation.profilePic} alt="user avatar" />
               </div>

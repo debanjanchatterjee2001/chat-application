@@ -7,11 +7,14 @@ const Message = ({ message }) => {
   const fromMe = message.senderId === authUser._id;
   const chatClassName = fromMe ? "chat-end" : "chat-start";
   const bubbleBgColor = fromMe ? "bg-blue-500" : "";
+  const shakeClass = message.shouldShake ? "shake" : "";
 
   return (
     <div>
       <div className={`chat ${chatClassName} p-2`}>
-        <div className={`chat-bubble ${bubbleBgColor} text-white`}>
+        <div
+          className={`chat-bubble ${bubbleBgColor} ${shakeClass} text-white`}
+        >
           {message.message}
         </div>
         <div className="chat-footer opacity-50">
